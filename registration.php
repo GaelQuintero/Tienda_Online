@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/bootstrap-reboot.css">
      <!--Manda a llamar el css de index-->
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/registration.css">
      <!--Manda a llamar el script de bootstrap-->
     <script src="js/bootstrap.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
@@ -37,7 +38,7 @@ class ConexionBD {
     public function insertarUsuario($email, $name, $lastname, $phone, $password) {
         try {
             // Hashear la contraseña usando bcrypt
-            $password_hash = password_hash($password, PASSWORD_BCRYPT);
+            // $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
             $consulta = "INSERT INTO userstechstore (email, name, lastname, phone, password) VALUES (?, ?, ?, ? , ?)";
             $declaracion = $this->conexion->prepare($consulta);
@@ -45,7 +46,8 @@ class ConexionBD {
             $declaracion->bindParam(2, $name);
             $declaracion->bindParam(3, $lastname);
             $declaracion->bindParam(4, $phone);
-            $declaracion->bindParam(5, $password_hash);
+            $declaracion->bindParam(5, $password);
+          //  $declaracion->bindParam(5, $password_hash);
 
             $declaracion->execute();
             return true;
@@ -264,6 +266,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
     <!--Fin del Script-->
        <!--End formulario de quejas o sugerencias-->
+       <br>
+       <br>
        <!--Footer final-->
        <footer class="bg-dark text-light py-2 fixed-bottom">
         <div class="container">
