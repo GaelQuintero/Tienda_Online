@@ -44,7 +44,7 @@ if (!isset($_SESSION['idUser'])) {
                     <p class="mb-0"><i class="bi bi-envelope-fill"></i> Email: TechStore@hotmail.com</p>
                 </div>
                 <div class="col-md-6 d-flex justify-content-end mt-2 mt-md-0">
-                    <a href="logout.php" class="text-light"> Cerrar sesión <i class="bi bi-box-arrow-right"></i></a>
+                    <a href="logout.php" class="text-light"> Cerrar sesión <i class="bi bi-door-open"></i></a>
                 </div>
             </div>
         </div>
@@ -69,22 +69,24 @@ if (!isset($_SESSION['idUser'])) {
                 <a class="nav-link" href="errorPage.php">Acerca de</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">Articulos</a>
+                <a class="nav-link" href="Articulos.php">Articulos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">Computadoras</a>
+                <a class="nav-link" href="Computadoras.php">Computadoras</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">Laptops</a>
+                <a class="nav-link" href="Laptops.php">Laptops</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">Celulares</a>
+                <a class="nav-link" href="Celulares.php">Celulares</a>
               </li>
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="text" placeholder="Buscar articulo">
-              <button class="btn btn-primary" type="button">Buscar</button>
-            </form>
+            <form class="d-flex" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="GET">
+    <input class="form-control me-2" type="text" placeholder="Buscar artículo" name="search">
+    <button class="btn btn-primary" type="submit">Buscar</button>
+    &nbsp;
+    <button class="btn btn-primary" type="submit">All</button>
+</form>
           </div>
         </div>
       </nav>
@@ -148,77 +150,76 @@ if (!isset($_SESSION['idUser'])) {
     </footer>
      <!--End Footer-->
        <!--Cards de articulos-->
-       <div class="container mt-4">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <!-- Card 1 -->
-            <div class="col">
-                <div class="card h-100 d-flex flex-column">
-                    <img src="img/articulos/ROG_Strix_G15.png" class="card-img-top" alt="ROG Strix G15">
-                    <div class="card-body">
-                        <h5 class="card-title">ROG Strix G15</h5>
-                        <p class="card-text">ROG Strix G15 is powered by an AMD Ryzen™ 9 6900HX CPU, an NVIDIA® GeForce RTX™ 3080 Ti</p>
-                        <a href="#" class="btn btn-primary">Comprar</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 2 -->
-            <div class="col">
-                <div class="card h-100 d-flex flex-column">
-                    <img src="img/articulos/msi_gaming_computer_gamer.png" class="card-img-top" alt="Portátil msi gaming computer gamer">
-                    <div class="card-body">
-                        <h5 class="card-title">GF63 Thin</h5>
-                        <p class="card-text">Equipada con el nuevo procesador 11a Gen. Intel® Core™ i7, tiene un desempeño 40% mayor que la generación anterior.</p>
-                        <a href="#" class="btn btn-primary">Comprar</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 3 -->
-            <div class="col">
-                <div class="card h-100 d-flex flex-column">
-                    <img src="img/articulos/png-transparent-gaming-laptop-gl702-asus-intel-core-i7-华硕-laptop-electronics-netbook-computer.png" class="card-img-top" alt="gl702-asus-intel-core-i7">
-                    <div class="card-body">
-                        <h5 class="card-title">Laptop Gamer ASUS ROG Strix</h5>
-                        <p class="card-text">Laptop Gamer ASUS ROG Strix GL702VM-GC220T 17.3'', Intel Core i7-7700HQ 2.80GHz</p>
-                        <a href="#" class="btn btn-primary">Comprar</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 4 -->
-            <div class="col">
-                <div class="card h-100 d-flex flex-column">
-                    <img src="img/articulos/pc-gamer.png" class="card-img-top" alt="pc-gamer">
-                    <div class="card-body">
-                        <h5 class="card-title">Xtreme Pc Gaming</h5>
-                        <p class="card-text">Amd Radeon Vega Renoir Ryzen 5 5600g 16gb Ssd 500gb Wifi Rgb.</p>
-                        <a href="#" class="btn btn-primary">Comprar</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 5 -->
-            <div class="col">
-                <div class="card h-100 d-flex flex-column">
-                    <img src="img/articulos/iphone.jpg" class="card-img-top" alt="Iphone 15">
-                    <div class="card-body">
-                        <h5 class="card-title">iPhone 15</h5>
-                        <p class="card-text">El iPhone 15 Plus viene con la Dynamic Island, cámara gran angular de 48 MP, entrada USB-C y un resistente vidrio con infusión de color en un diseño de aluminio.</p>
-                        <a href="#" class="btn btn-primary">Comprar</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 6 -->
-            <div class="col">
-                <div class="card h-100 d-flex flex-column">
-                    <img src="img/articulos/s24.jpg" class="card-img-top" alt="Samsung S24">
-                    <div class="card-body">
-                        <h5 class="card-title">Samsung Galaxy S24</h5>
-                        <p class="card-text">Descubre infinitas posibilidades para tus fotos con las 4 cámaras principales de tu equipo. Pon a prueba tu creatividad y juega con la iluminación, diferentes planos y efectos para obtener grandes resultados.</p>
-                        <a href="#" class="btn btn-primary">Comprar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div class="container mt-4">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <?php
+        // Incluimos el archivo que contiene la clase Database
+        include_once 'connection/dbconnection.php';
+
+        try {
+            // Creamos una instancia de la clase Database
+            $database = new Database();
+            // Obtenemos la conexión a la base de datos
+            $conn = $database->getConnection();
+
+            // Definimos la consulta SQL base para obtener todos los artículos
+            $sql = "SELECT * FROM articulos";
+
+            // Verificamos si se ha enviado el formulario de búsqueda y hay un término de búsqueda
+            if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['search'])) {
+                $search = $_GET['search'];
+                // Añadimos la condición de búsqueda a la consulta SQL base
+                $sql .= " WHERE name LIKE :search OR description LIKE :search OR category LIKE :search";
+            }
+
+            // Preparamos y ejecutamos la consulta
+            $stmt = $conn->prepare($sql);
+
+            // Si hay un término de búsqueda, bind de parámetro
+            if (isset($search)) {
+                $stmt->bindValue(':search', '%' . $search . '%', PDO::PARAM_STR);
+            }
+
+            $stmt->execute();
+            // Obtenemos los resultados
+            $articulos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Verificamos si se encontraron resultados
+            if (count($articulos) > 0) {
+                // Si se encontraron resultados, mostramos los artículos
+                foreach ($articulos as $articulo) {
+                    echo '<div class="col">';
+                    echo '<div class="card h-100 d-flex flex-column">';
+                    echo '<img src="img/articulos/' . $articulo['image'] . '" class="card-img-top" alt="' . $articulo['name'] . '">';
+                    echo '<div class="card-body">';
+                    echo '<h5 class="card-title">' . $articulo['name'] . '</h5>';
+                    echo '<p class="card-text">' . $articulo['description'] . '</p>';
+                    echo '<a href="' . $articulo['category'] . '.php" class="btn btn-primary">Comprar</a>';
+                    echo '</div></div></div>';
+                }
+            } else {
+                // Si no se encontraron resultados, mostramos un mensaje
+               
+                echo '<div class="col text-center" style="margin-left: 420px;">';
+                echo '<div class="alert alert-danger" role="alert">';
+                echo 'No se encontraron artículos que coincidan con la búsqueda.';
+                echo '</div>';
+                echo '</div>';
+                
+                
+               
+            }
+        } catch (PDOException $exception) {
+            echo "Error de conexión: " . $exception->getMessage();
+        }
+        ?>
     </div>
-       <!--End cards-->
+</div>
+
+
+
+<!--End cards-->
+
 <br>
       
    
