@@ -275,7 +275,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
        <!--End cards-->
-<br>
+       <br>
+       <!-- Card de ubicación -->
+       <center>
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Ubicación</h5>
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3604.3486255079797!2d-101.01882508820314!3d25.39313837749183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x868872fce4107015%3A0x7b7cc325375fbb31!2sC%2F%20Cordova%2C%20Buenos%20Aires%2C%2025076%20Saltillo%2C%20Coah.!5e0!3m2!1ses-419!2smx!4v1716877241938!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </center>
+       <br>
        <!--Formulario de quejas o sugerencias-->
 
        <div class="container mt-5">
