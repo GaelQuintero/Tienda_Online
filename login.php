@@ -98,7 +98,7 @@ require_once('connection/dbconnection.php'); // Incluye el archivo de conexión 
         <div class="container">
             <div class="row">
                 
-                    <h3 class="mb-0 text-center">Crear una cuenta <i class="bi bi-person-fill-add text-primary"></i></h3>
+                    <h3 class="mb-0 text-center">Iniciar sesión <i class="bi bi-person-circle"></i></h3>
                          
             </div>
         </div>
