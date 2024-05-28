@@ -60,8 +60,56 @@ if (isset($_POST['recoverPassword'])) {
             // Contenido del correo
             $mail->isHTML(true);
             $mail->Subject = 'Password recovery';
-            $mail->Body = 'Haz clic en el siguiente enlace para restablecer tu clave de acceso: <a href="http://tu-sitio.com/reset_password.php?email=' . $email . '&token=' . $token . '">Restablecer clave de acceso</a>';
-
+            $mail->Body = '
+            <html>
+            <head>
+              <style>
+                .card {
+                  max-width: 600px;
+                  margin: auto;
+                  border: 1px solid #ddd;
+                  border-radius: 5px;
+                  padding: 20px;
+                  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                  font-family: Arial, sans-serif;
+                }
+                .card-title {
+                  font-size: 24px;
+                  font-weight: bold;
+                  text-align: center;
+                  margin-bottom: 20px;
+                }
+                .card-body {
+                  font-size: 16px;
+                  line-height: 1.6;
+                  color: #333;
+                }
+                .btn {
+                  display: inline-block;
+                  padding: 10px 20px;
+                  margin-top: 20px;
+                  font-size: 16px;
+                  color: #fff;
+                  background-color: #007bff;
+                  text-decoration: none;
+                  border-radius: 5px;
+                  text-align: center;
+                }
+              </style>
+            </head>
+            <body>
+              <div class="card">
+                <div class="card-title">Tech Store 💻</div>
+                <div class="card-body">
+                  <p>Hola,</p>
+                  <p>Haz clic en el siguiente enlace para restablecer tu clave de acceso:</p>
+                  <p style:"color:white;"><a href="http://localhost:8081/quinterogarciarobertogaelUnidad1/reset_password.php?email=' . $email . '&token=' . $token . '" class="btn">Restablecer clave de acceso</a></p>
+                  <p>Si no solicitaste este cambio, puedes ignorar este correo.</p>
+                  <p>Gracias,<br>El equipo de Tech Store</p>
+                </div>
+              </div>
+            </body>
+            </html>';
             // Intentar enviar el correo
             $mail->send();
             echo '
