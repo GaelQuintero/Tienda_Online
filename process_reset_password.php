@@ -1,3 +1,16 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!--Manda a llamar los css de bootstrap-->
+      <link rel="stylesheet" href="css/bootstrap.css">
+    <title>Reset Password</title>
+    <!--CDN de SweetAlert2-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
 <?php
 // Incluir el archivo de conexión a la base de datos
 require 'connection/dbconnection.php'; // Ajusta la ruta según sea necesario
@@ -10,7 +23,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $confirm_password = $_POST['confirm_password'];
 
         if ($password !== $confirm_password) {
-            echo "Las contraseñas no coinciden.";
+            echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+            Swal.fire({
+                icon: "error",
+                title: "Las contraseñas no coinciden",
+                text: "Por favor, asegúrate de que las contraseñas coincidan.",
+            });
+            </script>';
             exit;
         }
 
@@ -24,27 +44,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password_reset = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($password_reset) {
-            // Hash de la nueva contraseña
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-            // Actualizar la contraseña en la tabla userstechstore
+            // Actualizar la contraseña en la tabla userstechstore sin hashear
             $stmt = $db->prepare('UPDATE userstechstore SET password = :password WHERE email = :email');
-            $stmt->execute(array(':password' => $hashed_password, ':email' => $email));
+            $stmt->execute(array(':password' => $password, ':email' => $email));
 
             // Eliminar el token usado
             $stmt = $db->prepare('DELETE FROM password_resets WHERE email = :email');
             $stmt->execute(array(':email' => $email));
 
-            echo "Tu contraseña ha sido actualizada correctamente.";
+            echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+            Swal.fire({
+                icon: "success",
+                title: "Tu contraseña se ha actualizado correctamente",
+                text: "En breve saldra de aqui.",
+                timer: 2000,
+            }).then(function() {
+                // Redirige a la página de inicio de sesión después de cerrar la alerta
+                window.location.href = "login.php";
+            });
+            </script>';
         } else {
-            echo "Token inválido o expirado.";
+            echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+            Swal.fire({
+                icon: "error",
+                title: "Token inválido o expirado",
+                text: "Por favor, solicita un nuevo enlace para restablecer tu contraseña.",
+            });
+            </script>';
         }
     } else {
-        echo "Todos los campos son obligatorios.";
+        echo '<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+        Swal.fire({
+            icon: "error",
+            title: "Todos los campos son obligatorios",
+            text: "Por favor, completa todos los campos.",
+        });
+        </script>';
     }
 } else {
     echo "Método de solicitud no válido.";
 }
 ?>
-
-
+</body>

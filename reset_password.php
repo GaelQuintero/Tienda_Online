@@ -28,8 +28,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!--CDN de SweetAlert2-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!--API para el chat-->
-    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="a2cff799-adf7-4880-b0cf-e072cb6b28bc";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </head>
 <body>
     <!--Footer de inicio-->
@@ -41,7 +39,7 @@
                     <p class="mb-0"><i class="bi bi-envelope-fill"></i> Email: TechStore@hotmail.com</p>
                 </div>
                 <div class="col-md-6 d-flex justify-content-end mt-2 mt-md-0">
-                    <a href="login.php" class="text-light"> Iniciar sesión <i class="bi bi-person-circle"></i></a>
+                    <a href="login.php" class="text-light"></a>
                 </div>
             </div>
         </div>
@@ -63,7 +61,7 @@
           <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                <a class="nav-link" href="index.php">Volver</a>
+                <a class="nav-link" href="index.php"></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)"></a>
@@ -108,7 +106,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <hr>
-    <form action="process_reset_password.php" method="POST">
+    <form action="process_reset_password.php" method="POST" id="formRegistration" name="formRegistration">
         <input type="hidden" name="email" value="<?php echo htmlspecialchars($email); ?>">
         <input type="hidden" name="token" value="<?php echo htmlspecialchars($token); ?>">
         <div class="mb-3">
@@ -120,48 +118,33 @@
             <input type="password" name="confirm_password" id="confirm_password"  class="form-control">
         </div>
         <div class="d-grid gap-2">
-            <button type="submit">Restablecer contraseña </button>
+            <button type="submit" class="btn btn-outline-primary">Restablecer contraseña </button>
         </div>
         </div>
         </div>
     </div>
     <script>
-        document.getElementById("formRegistration").addEventListener("submit", function(event){
-            event.preventDefault(); // Prevenir el envío del formulario
-           
-            let password = document.getElementById("password").value;
-            let confirmPassword = document.getElementById("confirm_password").value;
-            
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const noNumberRegex = /^[^0-9]*$/;
-
-            if (!password || !confirmPassword) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Campos incompletos',
-                    text: 'Por favor, completa todos los campos antes de enviar el formulario.',
-                });
-           
-           
-            } else if (password !== confirmPassword) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Contraseñas no coinciden',
-                    text: 'Las contraseñas ingresadas no coinciden.',
-                });
-            } else {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Contraseña cambiada exitosamente.',
-                    text: 'Contraseña cambiada exitosamente',
-                    timer: 2000, // tiempo en milisegundos (2 segundos)
-                    showConfirmButton: false // no mostrar botón de confirmación
-                }).then(() => {
-                    document.getElementById("formRegistration").submit(); // Enviar el formulario después del tiempo especificado
-                });
-            }
-        });
-    </script>
+    document.getElementById("formRegistration").addEventListener("submit", function(event){
+        event.preventDefault(); // Prevenir el envío del formulario
+       
+        let password = document.getElementById("password").value;
+        let confirmPassword = document.getElementById("confirm_password").value;
+        
+        if (!password || !confirmPassword) {
+            // No es necesario mostrar una alerta, simplemente evitamos el envío del formulario
+            return;
+        } else if (password !== confirmPassword) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Contraseñas no coinciden',
+                text: 'Las contraseñas ingresadas no coinciden.',
+            });
+        } else {
+            // Si las contraseñas coinciden, enviar el formulario
+            document.getElementById("formRegistration").submit();
+        }
+    });
+</script>
     </form>
     <?php
     } else {
