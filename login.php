@@ -36,6 +36,16 @@ require_once('connection/dbconnection.php'); // Incluye el archivo de conexión 
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="a2cff799-adf7-4880-b0cf-e072cb6b28bc";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 <!--API de reCAPTCHA-->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-12G983F99E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-12G983F99E');
+</script>
+
 </head>
 <body>
      <!--Footer de inicio-->
@@ -122,7 +132,7 @@ require_once('connection/dbconnection.php'); // Incluye el archivo de conexión 
         <label for="inputPassword" class="form-label">Contraseña</label>
         <input type="password" class="form-control" id="inputPassword" name="password" placeholder="Ingrese su contraseña" required>
     </div>
-    <div class="g-recaptcha mb-3" data-sitekey="6LcPgOcpAAAAALd4y20EdFOP2K1giEvOJ3wrcd7Z" required></div>
+    <div class="g-recaptcha mb-3" data-sitekey="6LcPgOcpAAAAALd4y20EdFOP2K1giEvOJ3wrcd7Z" data-callback="onSubmit"></div>
 
     <div class="d-grid gap-2">
         <button type="submit" name="loginUser" id="loginUser" class="btn btn-outline-primary">Iniciar sesión</button>

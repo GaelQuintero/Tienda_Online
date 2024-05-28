@@ -35,6 +35,15 @@ require_once('connection/dbconnection.php'); // Incluye el archivo de conexión 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--API para el chat-->
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="a2cff799-adf7-4880-b0cf-e072cb6b28bc";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-12G983F99E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-12G983F99E');
+</script>
 </head>
 <!--Codigo para registrar los usuarios-->
 <?php

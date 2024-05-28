@@ -11,6 +11,15 @@ require_once('connection/dbconnection.php'); // Incluye el archivo de conexión 
     <title>Error 404 - Página no encontrada</title>
     <link rel="icon" type="image/x-icon" href="img/favicon.png">
     <link rel="stylesheet" href="css/errorPage.css">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-12G983F99E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-12G983F99E');
+</script>
 </head>
 <body>
     <div class="container">
