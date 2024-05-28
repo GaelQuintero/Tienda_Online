@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +13,13 @@
 
 
 <?php
+session_start();
+
+// Si ya hay una sesión activa, redirigir al usuario a la página de inicio
+if (isset($_SESSION['idUser'])) {
+    header("Location: inicio.php");
+    exit();
+}
 // Incluir el archivo de conexión a la base de datos
 require 'connection/dbconnection.php'; // Ajusta la ruta según sea necesario
 
@@ -103,7 +111,7 @@ if (isset($_POST['recoverPassword'])) {
                 <div class="card-body">
                   <p>Hola,</p>
                   <p>Haz clic en el siguiente enlace para restablecer tu clave de acceso:</p>
-                  <p style:"color:white;"><a href="http://localhost:8081/quinterogarciarobertogaelUnidad1/reset_password.php?email=' . $email . '&token=' . $token . '" class="btn">Restablecer clave de acceso</a></p>
+                  <p style:"color:white;"><a href="http://localhost/quinterogarciarobertogaelUnidad1/reset_password.php?email=' . $email . '&token=' . $token . '" class="btn">Restablecer clave de acceso</a></p>
                   <p>Si no solicitaste este cambio, puedes ignorar este correo.</p>
                   <p>Gracias,<br>El equipo de Tech Store</p>
                 </div>

@@ -132,7 +132,7 @@ require_once('connection/dbconnection.php'); // Incluye el archivo de conexión 
         <a href="forgetpassword.php" class="text-primary text-decoration-none">¿No recuerdas tu contraseña? Haz clic aquí!</a>
     </div> 
 </form>
-<!--Codigo para iniciar sesión-->
+<!--Código para iniciar sesión-->
 <?php
 class Authenticator {
     private $conn;
@@ -142,47 +142,79 @@ class Authenticator {
     }
 
     public function login($email, $password) {
-        // Seleccionar el usuario por su email
-        $stmt = $this->conn->prepare('SELECT * FROM userstechstore WHERE email = :email');
-        $stmt->execute(array(':email' => $email));
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        try {
+            // Seleccionar el usuario por su email y contraseña
+            $stmt = $this->conn->prepare('SELECT * FROM userstechstore WHERE email = :email AND password = :password');
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $password);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Verificar si el usuario existe y la contraseña es correcta
-        if ($user) {
-            $_SESSION['idUser'] = $user['idUser'];
-            $_SESSION['email'] = $user['email'];
-            $_SESSION['name'] = $user['name'];
-            $_SESSION['lastname'] = $user['lastname'];
-            $_SESSION['phone'] = $user['phone'];
-            $_SESSION['dateRegister'] = $user['dateRegister'];
-            return true;
-        } else {
+            // Verificar si el usuario existe
+            if ($user) {
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+                $_SESSION['idUser'] = $user['idUser'];
+                $_SESSION['email'] = $user['email'];
+                $_SESSION['name'] = $user['name'];
+                $_SESSION['lastname'] = $user['lastname'];
+                $_SESSION['phone'] = $user['phone'];
+                $_SESSION['dateRegister'] = $user['dateRegister'];
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception $e) {
+            // Manejar la excepción (registrar, mostrar mensaje, etc.)
+            error_log($e->getMessage());
             return false;
         }
     }
 }
 
 if (isset($_POST['loginUser'])) {
-    $database = new Database();
-    $db = $database->getConnection();
-    $authenticator = new Authenticator($db);
-    
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    try {
+        // Asumiendo que la clase Database y el método getConnection() están definidos correctamente
+        $database = new Database();
+        $db = $database->getConnection();
+        $authenticator = new Authenticator($db);
+        
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
-    if ($authenticator->login($email, $password)) {
-        echo '<script>
-        window.location.href = "inicio.php";
-    </script>';
-        exit();
-    } else {
+        if ($authenticator->login($email, $password)) {
+            echo '<script>
+            window.location.href = "inicio.php";
+        </script>';
+            exit();
+        } else {
+            echo '<script>
+            Swal.fire({
+                icon: "question",
+                position: "center",
+                title: "Correo electrónico o contraseña incorrecta",
+                html: "<font color=grey><strong>Verifique sus datos de acceso</font>",
+                showConfirmButton: true,
+                allowOutsideClick: false,
+                confirmButtonText: "Aceptar"
+                   }).then(function(result){
+                      if(result.value){                   
+                      window.location = "login.php";
+                   }
+             });
+            </script>';
+            exit();
+        }
+    } catch (Exception $e) {
+        // Manejar la excepción (registrar, mostrar mensaje, etc.)
+        error_log($e->getMessage());
         echo '<script>
         Swal.fire({
-            icon: "question",
+            icon: "error",
             position: "center",
-            title: "Correo electronico o contraseña incorrecta",
-            html: "<font color=grey><strong>Verifique sus datos de acceso</font>",
-            position: "top-center",
+            title: "Error del servidor",
+            html: "<font color=grey><strong>Intente nuevamente más tarde</font>",
             showConfirmButton: true,
             allowOutsideClick: false,
             confirmButtonText: "Aceptar"
@@ -196,7 +228,8 @@ if (isset($_POST['loginUser'])) {
     }
 }
 ?>
-<!--Fin del codigo-->
+<!--Fin del código-->
+
 
 
             </div>

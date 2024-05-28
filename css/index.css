@@ -25,3 +25,7 @@
   ::-webkit-scrollbar-thumb:hover {
     background:#006eff; 
   }
+  #map {
+    height: 500px;  /* Altura del mapa */
+    width: 100%;    /* Ancho del mapa */
+}

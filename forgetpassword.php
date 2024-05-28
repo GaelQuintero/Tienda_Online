@@ -1,5 +1,13 @@
 <?php 
+session_start();
+
+// Si ya hay una sesión activa, redirigir al usuario a la página de inicio
+if (isset($_SESSION['idUser'])) {
+    header("Location: inicio.php");
+    exit();
+}
 require_once('connection/dbconnection.php'); // Incluye el archivo de conexión a la base de datos
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,4 +1,14 @@
+<?php 
+session_start();
 
+// Si ya hay una sesión activa, redirigir al usuario a la página de inicio
+if (isset($_SESSION['idUser'])) {
+    header("Location: inicio.php");
+    exit();
+}
+require_once('connection/dbconnection.php'); // Incluye el archivo de conexión a la base de datos
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,7 +133,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                <a class="nav-link" href="errorPage.html">Acerca de</a>
+                <a class="nav-link" href="errorPage.php">Acerca de</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)">Articulos</a>
